@@ -1,156 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Kouassi Kevin KOUADIO</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kouassi Kevin Kouadio — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1c1915;
+      --navy: #1a3a4a;
+      --navy-soft: #2f5b6c;
+      --gold: #a67c3d;
+      --muted: #5c574e;
+      --rule: #d8d0c4;
+      --chip: #f1eee8;
+      --chip-border: #ddd6cb;
+      --paper: #f3eee6;
+      --page: #fffdf8;
+    }
+
+    @page {
+      size: Letter;
+      margin: 0.4in 0.5in;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: var(--ink);
+      font-family: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.28;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .page {
+      max-width: 8.5in;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding-bottom: 7px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -1px;
+      width: 72px;
+      height: 2px;
+      background: var(--gold);
+      transform: translateX(-50%);
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Fraunces", "Times New Roman", Georgia, serif;
+      font-size: 22pt;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      line-height: 1.05;
+      color: var(--navy);
+    }
+
+    .title {
+      margin: 5px 0 6px;
+      font-size: 10pt;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--navy-soft);
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      margin: 0;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+
+    .contact p {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    .contact span,
+    .contact a {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .contact p > :not(:last-child)::after {
+      content: "";
+      width: 3px;
+      height: 3px;
+      margin: 0 8px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .contact a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      color: var(--gold);
+    }
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 7px 0 3px;
+      font-size: 9.4pt;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--navy);
+    }
+
+    h2::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    .summary {
+      margin: 0;
+      color: #2c2924;
+    }
+
+    .skills p {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 3px 8px;
+      margin: 0 0 3px;
+      align-items: start;
+    }
+
+    .skills p:last-child { margin-bottom: 0; }
+
+    .skills strong {
+      padding-top: 2px;
+      color: var(--navy);
+      font-size: 9pt;
+      letter-spacing: 0.2px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px 5px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 1px 7px;
+      background: var(--chip);
+      border: 1px solid var(--chip-border);
+      border-radius: 999px;
+      color: #2f2b26;
+      font-size: 8.7pt;
+      line-height: 1.45;
+    }
+
+    .job { margin-bottom: 6px; }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .job-header h3 {
+      margin: 0;
+      flex: 1;
+      min-width: 0;
+      font-size: 10.3pt;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .job-header h3 .co {
+      font-weight: 600;
+      color: var(--navy-soft);
+    }
+
+    .job-header h3 .loc {
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .dates {
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: 9.2pt;
+      color: var(--gold);
+    }
+
+    ul {
+      margin: 2px 0 0;
+      padding-left: 16px;
+    }
+
+    li {
+      margin-bottom: 1.5px;
+      padding-left: 2px;
+    }
+
+    li::marker {
+      color: var(--gold);
+      font-size: 0.85em;
+    }
+
+    .edu {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 2px;
+    }
+
+    .footer-line {
+      margin: 6px 0 0;
+      padding-top: 5px;
+      border-top: 1px solid var(--rule);
+      font-size: 9.4pt;
+      color: #2c2924;
+    }
+
+    @media screen {
+      html, body {
+        background: var(--paper);
+      }
+
+      body {
+        padding: 36px 16px 56px;
+      }
+
+      .page {
+        background: var(--page);
+        padding: 0.46in 0.54in 0.48in;
+        border-radius: 3px;
+        box-shadow:
+          0 1px 2px rgba(40, 30, 12, 0.05),
+          0 16px 40px rgba(40, 30, 12, 0.1);
+      }
+    }
+
+    @media screen and (max-width: 720px) {
+      body { padding: 0; }
+
+      .page {
+        padding: 28px 20px 36px;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      h1 { font-size: 26px; }
+
+      .job-header,
+      .edu {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1px;
+      }
+
+      .skills p { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      html, body { background: #fff; }
+      .page {
+        width: auto;
+        min-height: auto;
+        padding: 0;
+        background: #fff;
+        box-shadow: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div id="resume">
+  <div class="page">
     <header>
-        <h1>Kouassi Kevin KOUADIO</h1>
+      <h1>Kouassi Kevin Kouadio</h1>
+      <p class="title">Technical Solutions Engineer | Application Support Engineer</p>
+      <div class="contact">
         <p>
-            <a href="mailto:kevkouadio@gmail.com">kevkouadio@gmail.com</a> | +1 862 339 8389 | 
-            <a href="https://linkedin.com/in/kouassi-kouadio-b731a071" target="_blank">LinkedIn</a> | 
-            <a href="https://kevkouadio.netlify.app/" target="_blank">Portofolio</a>
+          <span>East Orange, NJ 07017</span>
+          <a href="tel:+18623398389">+1 862-339-8389</a>
+          <a href="mailto:kevkouadio@gmail.com">kevkouadio@gmail.com</a>
         </p>
+        <p>
+          <a href="https://www.linkedin.com/in/kouassi-kouadio-b731a071">linkedin.com/in/kouassi-kouadio-b731a071</a>
+          <a href="https://github.com/kevkouadio">github.com/kevkouadio</a>
+          <a href="https://kevkouadio.netlify.app">kevkouadio.netlify.app</a>
+        </p>
+      </div>
     </header>
 
-    <section>
-        <h2>Summary</h2>
-        <p>Interested in pursuing an opportunity in the tech field that affords me the ability to learn cutting edge technologies as well as contribute to a team in a meaningful and impactful way.</p>
-    </section>
+    <h2>Professional Summary</h2>
+    <p class="summary">
+      Technical Solutions and Application Support Engineer with 5+ years supporting enterprise SaaS, Warehouse Management Systems (WMS), and ecommerce platforms. Strong in SQL, APIs, production incident management, and SLA-driven client communication. Trusted liaison for global brands, coordinating commercial, warehouse, and engineering teams across the US, Canada, and Europe. Bilingual English and French.
+    </p>
 
-    <section>
-        <h2>Experience</h2>
-        <div class="job">
-            <h3>Technical Solutions Engineer</h3>
-            <p>LVMH Perfumes & Cosmetics | Jul 2023 - Present (1 year)</p>
-            <ul>
-                <li>Provide technical support for the ecommerce platforms of renowned LVMH Brands including Christian Dior, Fresh, Givenchy, Make Up Forever, Guerlain, Benefit Cosmetics, and Stella McCartney.</li>
-                <li>Daily troubleshooting of issues to enhance customer satisfaction.</li>
-                <li>Serve as the primary technical liaison for critical incidents within the US and Canadian RUN Digital applications.</li>
-                <li>Utilize tailored custom dashboards for key business partners such as Salesforce Commerce Cloud, eCommerce warehouse OPS, eCommerce business team, and finance.</li>
-                <li>Collaborate closely with commercial teams to grasp client business objectives effectively.</li>
-                <li>Take the lead in identifying and resolving diverse issues to ensure uninterrupted operations.</li>
-                <li>Deliver comprehensive weekly backlog reports to key technical stakeholders and the Senior Domain Manager, covering eCommerce RUN KPIs.</li>
-                <li>Manage ticket backlog and perform daily dashboard monitoring to uphold optimal performance standards.</li>
-                <li>Foster a robust network within the Digital and IT tech support ecosystem, maintaining close liaison with HQ in Paris.</li>
-                <li>Coordinate with the Senior Domain Manager and suppliers' IT support team, particularly the WMS development team, to address incidents impacting priority technical flows within Salesforce Commerce Cloud.</li>
-                <li>Identify, document, and escalate recurring issues that evolve into systemic problems for timely resolution and prevention.</li>
-                <li>Monitor and assess client satisfaction with digital services provided by Information Services Management, ensuring continuous enhancement in service delivery.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>Frontend Development Teacher & General Manager</h3>
-            <p>The Walk-On Foundation | Feb 2022 - Present (2 years 4 months)</p>
-            <ul>
-                <li>Teaching of HTML, CSS and Javascript to 7th and 8th graders.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>Technical Solutions Engineer, Retail Media</h3>
-            <p>Criteo | Aug 2022 - Jul 2023 (1 year)</p>
-            <ul>
-                <li>Provide technical support of Criteo's retail media platform.</li>
-                <li>Troubleshoot live campaigns to improve campaign performance and customer satisfaction.</li>
-                <li>Work closely with commercial teams to understand client business objectives.</li>
-                <li>Test and troubleshoot client’s implementation, providing feedback to the client’s engineering team.</li>
-                <li>Involvement in the technical rollout of new products added on the client’s portfolio such as email or mobile, by working closely with the Account Strategy team.</li>
-                <li>Support customers and internal customer services Team via Ticketing system.</li>
-                <li>Redefine processes to make the Technical Solutions team more efficient and be partners with the business teams.</li>
-                <li>Proactive development/contribution of tools and solutions that will have an impact on the campaigns performance or set up to support the growth of the team and facilitate the day-to-day job.</li>
-                <li>Provide guidance to other team members on areas of expertise.</li>
-                <li>Identify bugs, report them and work closely with the escalation and R&D teams on their resolution.</li>
-                <li>Participate with the wider global team to improve and develop new tools and processes.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>Web Developer</h3>
-            <p>BMS Logistic | Jan 2021 - Aug 2022 (1 year 8 months)</p>
-            <ul>
-                <li>Development, testing and deployment of web solutions using HTML, CSS and JavaScript or React, and Bootstrap for the client side development and NodeJS to develop the server side business logic.</li>
-                <li>Maintaining and adding functionality to existing company's website.</li>
-                <li>Ensure that code meets development standards and guidelines.</li>
-                <li>Create better user experiences by building interfaces that are simple, easy to comprehend, performant and reliable using modern tools like React.</li>
-                <li>Ensure that the website is optimized for various devices.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>Customer Service Agent (Gate lead)</h3>
-            <p>El Al Airline & Air China | Worldwide Flight Services (WFS) | Feb 2018 - Jan 2021 (3 years)</p>
-            <ul>
-                <li>Check in Passengers, preparation and issuance of tickets and itineraries, computation of fares, checking baggage, collection of excess baggage charges, providing passengers with general travel information.</li>
-                <li>Meets aircraft at gate, perform arrival tasks at the CBP and passport control, performs duties in the departure lounges or at boarding gates, coordinate boarding of passengers at the gate.</li>
-                <li>Completes all necessary arrangements for accommodating passengers holding reservations, standbys and their luggage, determines flight close-out time and prepares, completes and checks various flight forms for accuracy, invalidates tickets and completes post-departure procedures.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>Cabin Maintenance Auditor, Delta Airlines and Air Canada Auditing Project</h3>
-            <p>Andy Frain Services | Sep 2018 - Jun 2020 (1 year 10 months)</p>
-            <ul>
-                <li>Quality Assurance Audit of Delta Airline's aircraft interior (Cabin deep Clean & Mechanical appearance).</li>
-                <li>Quality Assurance Audit of Delta airline Airport facilities.</li>
-                <li>Quality Assurance Audit of Air Canada's Airport Operations (Aircraft cleaning standard, Boarding process, Aircraft arrival process, Baggage delivery process and Lounge operating).</li>
-                <li>Interaction with client and client's vendors.</li>
-                <li>Production of reports using audit specific software.</li>
-            </ul>
-        </div>
-        <div class="job">
-            <h3>National Federation & Sport Assistant Africa</h3>
-            <p>FIBA | Feb 2013 - Jul 2016 (3 years 6 months)</p>
-            <ul>
-                <li>Coordination of the African Basketball Federations development programs.</li>
-                <li>Relationship FIBA Africa / African National Federations.</li>
-                <li>Coordination and Administration of Training activities for African technical managers (referees, coaches, commissioners etc ...).</li>
-                <li>Assists the African NF & Sport Manager.</li>
-                <li>Support in African 3x3 Basketball competitions organization.</li>
-                <li>Support and training on digital tools use in African 3x3 Basketball competitions.</li>
-            </ul>
-        </div>
-    </section>
+    <h2>Core Competencies</h2>
+    <div class="skills">
+      <p>
+        <strong>Support</strong>
+        <span class="tags">
+          <span class="tag">Application Support</span>
+          <span class="tag">SaaS Support</span>
+          <span class="tag">WMS</span>
+          <span class="tag">Salesforce Commerce Cloud</span>
+          <span class="tag">Incident / Problem Management</span>
+          <span class="tag">Root Cause Analysis</span>
+          <span class="tag">SLA Compliance</span>
+          <span class="tag">24/7 On-Call</span>
+          <span class="tag">UAT</span>
+          <span class="tag">Go-Lives</span>
+        </span>
+      </p>
+      <p>
+        <strong>Technical</strong>
+        <span class="tags">
+          <span class="tag">Microsoft SQL Server</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">XML / EDI</span>
+          <span class="tag">IIS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">React.js</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">Git</span>
+        </span>
+      </p>
+      <p>
+        <strong>Collaboration</strong>
+        <span class="tags">
+          <span class="tag">Cross-functional stakeholders</span>
+          <span class="tag">Client training</span>
+          <span class="tag">KPI reporting</span>
+          <span class="tag">Customer service leadership</span>
+        </span>
+      </p>
+    </div>
 
-    <section>
-        <h2>Education</h2>
-        <div class="education">
-            <h3>Certificate, Full Stack Web Development</h3>
-            <p>Rutgers University | 2020 - 2020</p>
-        </div>
-        <div class="education">
-            <h3>Bachelor, Marketing & Management</h3>
-            <p>Legacy Institute d'Abidjan-Plateau | 2014 - 2014</p>
-        </div>
-        <div class="education">
-            <h3>Bachelor, Teaching Letters in English Language & Civilization</h3>
-            <p>Université Félix Houphouët-Boigny de Cocody-Abidjan | 2007 - 2010</p>
-        </div>
-    </section>
+    <h2>Professional Experience</h2>
 
-    <section>
-        <h2>Licenses & Certifications</h2>
-        <ul>
-            <li>Verified International Academic Qualifications - World Education Services (wes-17851757)</li>
-            <li>Rutgers Coding Bootcamp - Rutgers Division of Continuing Studies (71486426)</li>
-        </ul>
-    </section>
+    <div class="job">
+      <div class="job-header">
+        <h3>Application Support Engineer <span class="co">| Made4net</span> <span class="loc">— Teaneck, NJ</span></h3>
+        <div class="dates">Oct 2024 – Present</div>
+      </div>
+      <ul>
+        <li>Own advanced troubleshooting and root-cause analysis for enterprise WMS clients, restoring production issues with minimal warehouse downtime.</li>
+        <li>Investigate SQL database failures, API integrations, ERP connections, and system workflows to resolve mission-critical incidents against SLA.</li>
+        <li>Support go-lives, upgrades, UAT validation, and production monitoring so clients cut over without disrupting daily operations.</li>
+        <li>Provide rotating 24/7 on-call coverage with proactive client updates during high-severity events.</li>
+        <li>Built an Excel-to-SQL converter (MSSQL, MySQL, PostgreSQL) to speed bulk data loads and reduce conversion errors.</li>
+      </ul>
+    </div>
 
-    <section>
-        <h2>Skills</h2>
-        <p>
-            BizTalk, Microsoft Dynamics AX, CyberSource, Adyen, Jira, XML, Enterprise Resource Planning (ERP), 
-            Microsoft Power BI, E-Commerce, Salesforce Commerce Cloud (SFCC), HTML, Service Now, JavaScript, 
-            CSS, Bootstrap, Node.js, Python, AWS, Salesforce Service Cloud (SFSC), Customer service, React Native, 
-            React, Github, Analysis skills, Organizational skills, Front-end development, Back-end development, REST, 
-            TypeScript, Scripting, Software troubleshooting, Windows, SQL, Databases, Project management, Communication skills,
-             Technical support, Retail Media, Ad tech, Teaching, SaaS
-        </p>
-    </section>
-</div>
-<div id="btnDiv">
-    <button id="downloadBtn">Download as PDF</button>
-</div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-    <script src="scripts.js"></script>
+    <div class="job">
+      <div class="job-header">
+        <h3>Technical Solutions Engineer <span class="co">| LVMH Perfumes &amp; Cosmetics</span> <span class="loc">— New Jersey</span></h3>
+        <div class="dates">Jul 2023 – Aug 2024</div>
+      </div>
+      <ul>
+        <li>Supported Salesforce Commerce Cloud for LVMH brands including Dior, Fresh, Givenchy, Make Up For Ever, Guerlain, Benefit, and Stella McCartney.</li>
+        <li>Primary technical liaison for US and Canada digital applications, coordinating incidents with Paris HQ and vendor IT teams.</li>
+        <li>Monitored order, shipment, and returns flows; escalated recurring breaks before they became systemic failures.</li>
+        <li>Managed KPI dashboards and weekly RUN reporting for technical stakeholders and the Senior Domain Manager.</li>
+        <li>Partnered with commercial and IT teams so technical fixes matched business priorities, not only ticket closure.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Technical Solutions Engineer, Retail Media <span class="co">| Criteo</span> <span class="loc">— New York, NY</span></h3>
+        <div class="dates">Aug 2022 – Jul 2023</div>
+      </div>
+      <ul>
+        <li>Supported retail media clients by troubleshooting live campaign performance, tracking, and technical integrations.</li>
+        <li>Tested client implementations, reported product bugs, and worked with escalation and R&amp;D through to resolution.</li>
+        <li>Improved internal processes and tools so Technical Solutions could partner with commercial teams, not only work the ticket queue.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Web Developer <span class="co">| BMS Logistic</span> <span class="loc">— Newark, NJ (Remote)</span></h3>
+        <div class="dates">Jan 2021 – Aug 2022</div>
+      </div>
+      <ul>
+        <li>Developed and maintained web applications in React, Node.js, HTML, CSS, and JavaScript, including new features on the company site.</li>
+        <li>Improved performance and responsiveness so interfaces stayed usable across devices.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <h3>Gate Lead <span class="co">| Worldwide Flight Services</span> <span class="loc">— Newark Airport (El Al &amp; Air China)</span></h3>
+        <div class="dates">Feb 2018 – Jan 2021</div>
+      </div>
+      <ul>
+        <li>Led passenger check-in, boarding, and gate close-out for international flights; resolved real-time issues in a high-volume, time-critical operation while keeping airline and airport compliance intact.</li>
+      </ul>
+    </div>
+
+    <h2>Education</h2>
+    <div class="edu">
+      <div><strong>Full Stack Web Development Certificate</strong> — Rutgers University</div>
+      <div class="dates">2020</div>
+    </div>
+    <div class="edu">
+      <div><strong>Professional License, Marketing &amp; Management</strong> — Legacy Institute, Abidjan</div>
+      <div class="dates">2014</div>
+    </div>
+    <div class="edu">
+      <div><strong>Bachelor’s, English Language &amp; Literature</strong> — Université Félix Houphouët-Boigny</div>
+      <div class="dates">2010</div>
+    </div>
+    <p class="footer-line"><strong>Languages:</strong> French (Native) · English (Full Professional) &nbsp;|&nbsp; WES Verified International Academic Qualifications (2019)</p>
+  </div>
 </body>
 </html>
