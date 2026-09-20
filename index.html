@@ -250,6 +250,10 @@
       color: #2c2924;
     }
 
+    .resume-actions {
+      display: none;
+    }
+
     @media screen {
       html, body {
         background: var(--paper);
@@ -257,6 +261,37 @@
 
       body {
         padding: 36px 16px 56px;
+      }
+
+      .resume-actions {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        justify-content: flex-end;
+        max-width: 8.5in;
+        margin: 0 auto 16px;
+        padding: 10px 0;
+      }
+
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 16px;
+        border-radius: 999px;
+        background: var(--navy);
+        color: #fffdf8;
+        font-family: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+        font-size: 10.5pt;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(26, 58, 74, 0.18);
+      }
+
+      .download-btn:hover {
+        background: var(--navy-soft);
       }
 
       .page {
@@ -271,6 +306,13 @@
 
     @media screen and (max-width: 720px) {
       body { padding: 0; }
+
+      .resume-actions {
+        margin: 0;
+        padding: 12px 16px;
+        background: rgba(243, 238, 230, 0.94);
+        border-bottom: 1px solid var(--rule);
+      }
 
       .page {
         padding: 28px 20px 36px;
@@ -292,6 +334,7 @@
 
     @media print {
       html, body { background: #fff; }
+      .resume-actions { display: none !important; }
       .page {
         width: auto;
         min-height: auto;
@@ -303,6 +346,11 @@
   </style>
 </head>
 <body>
+  <div class="resume-actions">
+    <a class="download-btn" href="./Kouassi_Kevin_Kouadio_Resume.pdf" download="Kouassi_Kevin_Kouadio_Resume.pdf">
+      Download PDF
+    </a>
+  </div>
   <div class="page">
     <header>
       <h1>Kouassi Kevin Kouadio</h1>
